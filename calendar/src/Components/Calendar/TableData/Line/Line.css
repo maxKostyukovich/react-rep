@@ -1,0 +1,16 @@
+.line{
+    background-color: #48C1C2;
+    border-radius: 6px;
+    height: 3px;
+    margin: 0 auto;
+
+}
+.flex{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.w{
+    width:24px;
+    margin: 0 auto;
+}

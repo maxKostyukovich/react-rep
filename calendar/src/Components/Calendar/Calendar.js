@@ -4,17 +4,11 @@ import TabelData from './TableData/TabelData'
 import './Calendar.css';
 
 class Calendar extends React.Component {
-  constructor(props){
-    super(props);
-    this.state={
-        days:{}
-    }
-  }
-  isEvent(date){
-    let tmp="no";
+  events(date){
+    let tmp=0;
     this.props.data.forEach((item,index)=>{
       if(moment(item.date).format('YYYYMD')===this.props.date.clone().date(date).format('YYYYMD')){
-        tmp= "yes";
+        tmp=item.events.length;
       }
     });
   return tmp;
@@ -26,7 +20,7 @@ class Calendar extends React.Component {
     let blanks = [];
     for (let i = 0; i < Number(startDay); i++) {
       blanks.push(
-        <TabelData keys={-i} day={""} isEvent={false} currDate={this.props.date} styles={"calendar-day"}/>
+        <TabelData keys={-i} day={""} events={0} currDate={this.props.date} styles={"calendar-day"}/>
 
       );
     }
@@ -35,7 +29,7 @@ class Calendar extends React.Component {
       daysInMonth.push(
         <TabelData keys={i} 
         day={i} 
-        isEvent={this.isEvent(i)}
+        events={this.events(i)}
         currDate={this.props.date} 
         styles={this.props.date.clone().format('D')==i?"selected-day":"calendar-day"}/>
       );
@@ -73,7 +67,7 @@ class Calendar extends React.Component {
         startWeekDay=1;
         for(let i = 0;i<startDay;i++){
           blanks.push(
-            <TabelData keys={-i} isEvent={false} day={""}  currDate={this.props.date} styles={"calendar-day"}/>
+            <TabelData keys={-i} events={0} day={""}  currDate={this.props.date} styles={"calendar-day"}/>
           )
         }
       }
@@ -81,29 +75,37 @@ class Calendar extends React.Component {
       dateOfLastDay.endOf('month');
       let lastDay = dateOfLastDay.clone().format('D');
       let numOfLastDay = dateOfLastDay.clone().format('d');
+      let total;
     if(currDay>=lastDay-numOfLastDay){
+      let lastBlanks=[];
       for(let i=Number(startWeekDay);i<=Number(lastDay);i++)
       {
         daysInWeek.push(
       <TabelData keys={i} 
       day={i} 
       currDate={this.props.date} 
-      isEvent={this.isEvent(i)}
+      events={this.events(i)}
       styles={this.props.date.clone().format('D')==i?"selected-day":"calendar-day"}/>
         );
       }
+      for(let j=daysInWeek.length;j<7;j++){
+        lastBlanks.push(
+          <TabelData keys={-j} events={0} day={""}  currDate={this.props.date} styles={"calendar-day"}/>
+        )
+      }
+      total = [...blanks,...daysInWeek,...lastBlanks];
     }else{
         for(let i = Number(startWeekDay);i<=Number(endWeekDay);i++){
           daysInWeek.push(
         <TabelData keys={i} 
         day={i} 
-        isEvent={this.isEvent(i)} 
+        events={this.events(i)} 
         currDate={this.props.date} 
         styles={this.props.date.clone().format('D')==i?"selected-day":"calendar-day"}/>
           );
         }
+        total = [...blanks,...daysInWeek];
       }
-        let total = [...blanks,...daysInWeek];
         let tmp = <tr>{total}</tr>
         return tmp;
   }

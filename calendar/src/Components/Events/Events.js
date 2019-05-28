@@ -5,12 +5,6 @@ import './Events.css';
 
 
 class Events extends React.Component {
-  constructor(props){
-    super(props);
-    this.state={
-    }
-  }
-
 showEvents(eventArr){
   eventArr.sort((a,b)=>moment(a.date, 'YYYY-MM-DD') - moment(b.date, 'YYYY-MM-DD'));
     let events = eventArr.map((items,i)=>{

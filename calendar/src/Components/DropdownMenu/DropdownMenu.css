@@ -4,18 +4,18 @@
     width: 100%;
     top: 0;
     left: 0;
-    border-radius:0 0 15px 15px;
     z-index:99; 
 }
 .hide{
     display: none;
 }
 .calendar-mode{
-  border: 1px solid #E8E9EB;
+  border: 1px solid rgba(232, 233, 235,0.25);
   border-radius: 30px;
   display: inline-block;
-  margin:10px;
+  margin:5px;
   width: 103px;
+  height: 30px;
   cursor: pointer;
 }
 .calendar-mode p{
@@ -24,11 +24,9 @@
   font-weight: 400;
   line-height: 17px;
   text-align: center;
-  
+  margin-top:7px;
+  opacity: 0.5;
 }
 .wrapper{
-    margin:0 auto;
-    width: 630px;
-    height: auto;
     position: relative;
 }

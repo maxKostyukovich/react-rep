@@ -35,6 +35,7 @@ class App extends React.Component {
       {date:"2019-05-30",events:[{name:"Go on a picnic",body:"We are going to do a picnic on Khortitza",time:"10:00 AM"},
       {name:"Practice",body:"Scope Creek",time:"07:00 PM"}]},
       {date:"2019-05-29",events:[{name:"Practice",body:"Pine Mountain Overlook Loop",time:"11:00 AM"}]},
+      {date:"2019-05-31",events:[{name:"Practice",body:"Pine Mountain Overlook Loop",time:"11:00 AM"},{name:"Practice",body:"Pine Mountain Overlook Loop",time:"11:00 AM"},{name:"Practice",body:"Pine Mountain Overlook Loop",time:"11:00 AM"},{name:"Practice",body:"Pine Mountain Overlook Loop",time:"11:00 AM"}]},
       {date:"2019-06-10",events:[{name:"Practice",body:"All-A-Toona Ride",time:"11:00 AM"}]}
     ];
     return data;
@@ -85,7 +86,7 @@ class App extends React.Component {
       <TurnOverButton text={this.state.mode==="month"?this.state.currentMonth.clone().subtract(1,"month").format("MMM"):"Prev"} 
       handler={this.handleSubMonth} className={"prev-month"}/>
       <div className="month">
-      <h2 className="current-month"><b>{this.state.currentMonth.clone().format('MMMM')}</b></h2>
+      <h2 className="current-month">{this.state.currentMonth.clone().format('MMMM')}</h2>
       <Dropdown isDrop={this.state.isDropdown} onClick={this.handleDropdown}/>
       </div>
       <TurnOverButton text={this.state.mode==="month"?this.state.currentMonth.clone().add(1,"month").format("MMM"):"Next"} 

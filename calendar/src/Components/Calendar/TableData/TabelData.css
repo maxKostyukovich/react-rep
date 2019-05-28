@@ -12,18 +12,21 @@ height: 5px;
 
 }
 .calendar-day{
-    padding: 10px 0;
+    margin:0 6px;
+    padding: 8px 0;
     cursor: pointer;
 }
 .selected-day{
-    position: relative;
-    padding: 10px 0;
+    margin:0 6px;
+    padding: 8px 0;
+    border-radius: 6px;
     color: white;
     background-color:#0B3157;
     cursor: pointer;
 }
-.line{
-    width:15px;
-    border-color: #45B4B7;
-    margin:0 auto;
+
+.td-wrapper{
+    width: 40px;
+    height: 40px;
+    margin: auto;
 }
